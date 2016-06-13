@@ -2,9 +2,18 @@ angular.module('twiser').controller('dashCtrl', function($scope, twitterService,
 
   twitterService.initialize();
 
-  $scope.usersDataArray = [];
 
+  $scope.usersDataArray = [];
   $scope.getUserError = false;
+
+  if (localStorage.twitArray) {
+    $scope.usersDataArray = JSON.parse(localStorage.twitArray);
+  }
+
+  $scope.saveData = function(){
+    localStorage.twitArray = JSON.stringify($scope.usersDataArray);
+    console.log(localStorage.twitArray);
+  }
 
 
   $scope.deleteCard = function (user) {
